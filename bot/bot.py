@@ -197,7 +197,7 @@ def db(command: str, username: str, password: str, host: str, port: str, databas
         elif type == 'insert':
             connection.commit()
         logging.info("Команда успешно выполнена")
-	update.message.reply_text(result)
+        update.message.reply_text(result)
     except (Exception, Error) as error:
         logging.error("Ошибка при работе с PostgreSQL: %s", error)
         return "Ошибка при работе с PostgreSQL"
