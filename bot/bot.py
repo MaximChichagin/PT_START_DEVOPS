@@ -250,12 +250,16 @@ def get_ss(update: Update, context):
 def get_services(update: Update, context):
     update.message.reply_text(linux('systemctl list-units --type=service | head -n 10', RM_HOST, RM_USER, RM_PASSWORD, RM_PORT))
 
-def get_repl_logs(update: Update, context):
+def get_repl_logs(update: Update, context): 
     try:
-        command = "cat /var/log/postgresql/postgresql-15-main.log | grep repl | tail -n 20"
-        result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+	# docker
+        # command = "cat /var/log/postgresql/postgresql-15-main.log | grep repl | tail -n 20"
+        # ansible 
+	command = "cat /var/log/postgresql/postgresql-15-main.log | grep repl | tail -n 20"
+	
+	result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         update.message.reply_text(result.stdout, result.stderr)
-    except subprocess.CalledProcessError as e:
+    #except subprocess.CalledProcessError as e:
         update.message.reply_text(e.stdout, e.stderr)
 
 def main():
