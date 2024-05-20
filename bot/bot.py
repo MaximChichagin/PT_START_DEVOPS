@@ -137,7 +137,7 @@ def verifyPassword(update: Update, context):
     return ConversationHandler.END
 
 def get_app_list_all(update: Update, context):
-    update.message.reply_text(linux('dpkg -l | head -n 11', RM_HOST, RM_USER, RM_PASSWORD, RM_PORT))
+    update.message.reply_text(linux('apt list --installed | head -n 10', RM_HOST, RM_USER, RM_PASSWORD, RM_PORT))
     return ConversationHandler.END
 
 def get_app_list_one(update: Update, context):
@@ -253,7 +253,7 @@ def get_services(update: Update, context):
 
 def get_repl_logs(update: Update, context): 
     try:
-	# docker
+	    # docker
         # command = "cat /var/log/postgresql/postgresql-15-main.log | grep repl | tail -n 20"
         # ansible 
         command = "cat /var/log/postgresql/postgresql-14-main.log | grep repl | tail -n 20"
