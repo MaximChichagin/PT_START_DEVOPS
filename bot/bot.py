@@ -181,7 +181,7 @@ def linux(command: str, host: str, username: str, password: str, port: str):
         logging.error("Ошибка при работе с Linux: %s", error)
         return "Не удалось установить соединение"
 
-def db(command: str, username: str, password: str, host: str, port: str, database: str, type: str):
+def db(command: str, username: str, password: str, host: str, port: str, database: str, type: str, update: Update, context):
     connection = None
     result = ''
 
@@ -197,6 +197,7 @@ def db(command: str, username: str, password: str, host: str, port: str, databas
         elif type == 'insert':
             connection.commit()
         logging.info("Команда успешно выполнена")
+	update.message.reply_text(result)
     except (Exception, Error) as error:
         logging.error("Ошибка при работе с PostgreSQL: %s", error)
         return "Ошибка при работе с PostgreSQL"
