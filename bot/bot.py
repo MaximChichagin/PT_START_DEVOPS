@@ -255,11 +255,11 @@ def get_repl_logs(update: Update, context):
 	# docker
         # command = "cat /var/log/postgresql/postgresql-15-main.log | grep repl | tail -n 20"
         # ansible 
-	command = "cat /var/log/postgresql/postgresql-14-main.log | grep repl | tail -n 20"
-	
-	result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        command = "cat /var/log/postgresql/postgresql-14-main.log | grep repl | tail -n 20"
+
+        result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         update.message.reply_text(result.stdout, result.stderr)
-    #except subprocess.CalledProcessError as e:
+    except subprocess.CalledProcessError as e:
         update.message.reply_text(e.stdout, e.stderr)
 
 def main():
